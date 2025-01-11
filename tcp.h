@@ -15,6 +15,13 @@
 #define TCP_LOCAL_ADDRESS "127.0.0.1"
 #define TCP_PORT 1972
 
+typedef enum
+{
+    STEP1,
+    STEP2,
+    STEP3,
+}STEP;
+
 #define printg(fmt, ...) printf("[\x1b[33m%s\x1b[0m]" fmt "\n", __FUNCTION__, ##__VA_ARGS__)
 #define printr(fmt, ...) printf("[\x1b[31m%s\x1b[0m]" fmt "\n", __FUNCTION__, ##__VA_ARGS__)
 
