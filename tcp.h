@@ -14,6 +14,7 @@
 
 #define TCP_LOCAL_ADDRESS "127.0.0.1"
 #define TCP_PORT 1972
+#define TCP_SERVER_IP "xxx.xxx.xxx.xxx" //input your ip!
 
 typedef enum
 {

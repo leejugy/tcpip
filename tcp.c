@@ -73,7 +73,7 @@ int init_client(int port, char *server_ip)
     }
 
     fd = ret;
-    inet_pton(AF_INET, TCP_LOCAL_ADDRESS, &clinet_attribute.sin_addr);
+    inet_pton(AF_INET, server_ip, &clinet_attribute.sin_addr);
     clinet_attribute.sin_port = htons(port);
     clinet_attribute.sin_family = AF_INET;
 

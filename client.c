@@ -8,6 +8,7 @@ void thread_client()
         0,
     };
     int fd = 0;
+    int ret = 0;
     STEP step = STEP1;
 
     while (1)
@@ -15,7 +16,7 @@ void thread_client()
         switch (step)
         {
         case STEP1:
-            fd = init_client(TCP_PORT, TCP_LOCAL_ADDRESS);
+            fd = init_client(TCP_PORT, TCP_SERVER_IP);
             if (fd < 0)
             {
                 printr("fail to connect server");
@@ -29,8 +30,21 @@ void thread_client()
         case STEP2:
             memset(recv_buffer, 0, sizeof(recv_buffer));
 
-            sock_send(fd, send_name, strlen(send_name));
-            sock_recv(fd, recv_buffer, sizeof(recv_buffer));
+            ret = sock_send(fd, send_name, strlen(send_name));
+            if(ret < 0)
+            {
+                printr("fail to send");
+                step = STEP1;
+                break;
+            }
+
+            ret = sock_recv(fd, recv_buffer, sizeof(recv_buffer));
+            if(ret < 0)
+            {
+                printr("fail to recv");
+                step = STEP1;
+                break;
+            }
 
             printg("client recv : %s", recv_buffer);
 
